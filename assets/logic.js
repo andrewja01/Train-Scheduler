@@ -50,10 +50,34 @@ database.ref().on("child_added", function(snapshot) {
     console.log(tTime);
     console.log(tFreq);
 
+var trainFrequency = tFreq;
+
+var firstTrain = "05:00";
+
+var convertedTime = moment(firstTrain, "hh:mm").subtract(1, "years");
+console.log(convertedTime);
+
+var currentTime = moment();
+console.log("Current Time: " + moment(currentTime).format("hh:mm"))
+
+var difference = moment().diff(moment(convertedTime), "minutes");
+console.log("Difference in Time: " + difference);
+
+var remainder = difference % trainFrequency;
+console.log(remainder);
+
+var minutesAway = trainFrequency - remainder;
+console.log("Minutes till Train: " + minutesAway);
+
+var nextArrival = moment().add(minutesAway, "minutes").format("hh:mm");
+console.log("Arrival Time: " + moment(nextArrival).format("hh:mm"));
 
 //add inputted data to the current schedule
 $("#train-schedule tbody").append(
-    "<tr><td>" + tName + "</td><td>" + tDest + "</td><td>"
-+ tFreq + "</td><td>" + "" + "</td><td>" + "" + "</td></tr>");
+    "<tr><td>" + tName + "</td><td>" 
+    + tDest + "</td><td>"
+    + tFreq + "</td><td>" 
+    + nextArrival + "</td><td>" 
+    + minutesAway + "</td></tr>");
 
 });

@@ -4,3 +4,10 @@
     background-color: #615e5e;
     color: #b36e6e;
 }
+
+body {
+    background-image: url(images/graffiti.png);
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
